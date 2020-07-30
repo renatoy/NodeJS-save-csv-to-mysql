@@ -33,17 +33,18 @@ app.get("/", (req, res) => {
 
 require("./app/routes/customer.routes")(app);
 
-readFile('./mock_data.csv', 'utf-8', (err, fileContent) => {
-  if (err) {
-    console.log(err); // Do something to handle the error or just throw it
-    throw new Error(err);
-  }
-  const jsonObj = csvjson.toObject(fileContent);
-  console.log(jsonObj);
-  Customer.bulkCreate(jsonObj)
-  .then(data => console.log('Success, ', data))
-  .catch(err => console.log(err))
-})
+/***** Uncomment to create customers in db: *****/
+// readFile('./mock_data.csv', 'utf-8', (err, fileContent) => {
+//   if (err) {
+//     console.log(err); // Do something to handle the error or just throw it
+//     throw new Error(err);
+//   }
+//   const jsonObj = csvjson.toObject(fileContent);
+//   console.log(jsonObj);
+//   Customer.bulkCreate(jsonObj)
+//   .then(data => console.log('Success, ', data))
+//   .catch(err => console.log(err))
+// })
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
